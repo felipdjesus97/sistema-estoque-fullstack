@@ -35,11 +35,7 @@ Antes de executar o projeto, é necessário possuir:
 
 # Instalação
 
-## 1. Clonar o projeto
-
-```bash
-git clone <url-do-repositorio>
-```
+## 1. Clonar o projeto ou baixar zip
 
 ---
 
