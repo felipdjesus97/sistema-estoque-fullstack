@@ -25,7 +25,7 @@ Projeto desenvolvido com React, Node.js, Express e MySQL para gerenciamento de e
 
 Antes de executar o projeto, é necessário possuir:
 
-- Node.js **20.20 LTS** (ou superior compatível)
+- Node.js **20.20** (ou superior compatível)
 - npm
 - MySQL Server
 
@@ -227,4 +227,4 @@ Arquivo criado automaticamente pelo macOS.
 - Sempre execute `npm install` tanto no **backend** quanto no **frontend** após clonar o projeto.
 - O arquivo `.env` não é enviado ao repositório e deve ser criado manualmente.
 - Certifique-se de que o MySQL esteja em execução antes de iniciar o backend.
-- Utilize uma versão compatível do Node.js (22.x LTS ou superior recomendado).
+- Utilize uma versão compatível do Node.js (20.20 ou superior recomendado).
