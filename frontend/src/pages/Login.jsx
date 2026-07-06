@@ -37,6 +37,7 @@ export default function Login() {
         {erro && <p className="error">{erro}</p>}
 
         <input
+          data-cy="usuario"
           placeholder="Usuário"
           value={usuario}
           autoCapitalize="none"
@@ -46,13 +47,14 @@ export default function Login() {
         />
 
         <input
+          data-cy="senha"
           type="password"
           placeholder="Senha"
           value={senha}
           onChange={(e) => setSenha(e.target.value)}
         />
 
-        <button className="btn-login" onClick={entrar}>
+        <button data-cy="btn-login" className="btn-login" onClick={entrar}>
           Entrar
         </button>
       </div>

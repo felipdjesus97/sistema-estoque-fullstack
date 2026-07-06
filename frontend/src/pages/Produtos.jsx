@@ -31,13 +31,27 @@ export default function Produtos() {
   }
 
   function salvar() {
-    if (!nome || !quantidade) return;
+    const qtd = Number(quantidade);
 
+    if (!nome || !quantidade) {
+      showMsg("Preencha corretamente os campos!");
+      return;
+    }
+
+    if (Number.isNaN(qtd)) {
+      showMsg("Preencha corretamente os campos!");
+      return;
+    }
+
+    if (qtd < 0) {
+      showMsg("Quantidade não pode ser negativa!");
+      return;
+    }
     if (editando) {
       axios
         .put(
           `http://localhost:3001/produtos/${editando}`,
-          { nome, quantidade },
+          { nome, quantidade: qtd },
           { headers: { Authorization: token } }
         )
         .then(() => {
@@ -51,7 +65,7 @@ export default function Produtos() {
       axios
         .post(
           "http://localhost:3001/produtos",
-          { nome, quantidade },
+          { nome, quantidade: qtd },
           { headers: { Authorization: token } }
         )
         .then((res) => {
@@ -105,6 +119,7 @@ export default function Produtos() {
 
         <div style={styles.form}>
           <input
+            data-cy="nome"
             value={nome}
             onChange={(e) => setNome(e.target.value)}
             placeholder="Nome"
@@ -112,20 +127,22 @@ export default function Produtos() {
           />
             
           <input
+            data-cy="quantidade"
             value={quantidade}
             onChange={(e) => setQuantidade(e.target.value)}
             placeholder="Quantidade"
             style={styles.input}
             type="number"
+            min="0"
           />
 
           <div style={styles.buttonGroup}>
-            <button onClick={salvar} style={styles.button}>
+            <button data-cy="btn-salvar" onClick={salvar} style={styles.button}>
               {editando ? "Atualizar" : "Salvar"}
             </button>
 
             {editando && (
-              <button onClick={cancelar} style={styles.cancel}>
+              <button data-cy="btn-cancelar" onClick={cancelar} style={styles.cancel}>
                 Cancelar
               </button>
             )}
@@ -140,11 +157,11 @@ export default function Produtos() {
               </span>
 
               <div>
-                <button onClick={() => editar(p)} style={styles.edit}>
+                <button data-cy="btn-editar" onClick={() => editar(p)} style={styles.edit}>
                   ✏️
                 </button>
 
-                <button onClick={() => excluir(p.id)} style={styles.delete}>
+                <button data-cy="btn-excluir" onClick={() => excluir(p.id)} style={styles.delete}>
                   🗑️
                 </button>
               </div>
@@ -152,11 +169,11 @@ export default function Produtos() {
           ))}
         </div>
 
-        <button onClick={() => navigate("/dashboard")} style={styles.nav}>
+        <button data-cy="btn-dashboard" onClick={() => navigate("/dashboard")} style={styles.nav}>
           Dashboard
         </button>
 
-        <button onClick={logout} style={styles.logout}>
+        <button data-cy="btn-sair" onClick={logout} style={styles.logout}>
           Sair
         </button>
       </div>
@@ -174,8 +191,8 @@ const styles = {
   },
 
   card: {
-    background: "#111827",
-    padding: 25,
+    background: "#1f2937",
+    padding: 40,
     borderRadius: 12,
     width: 420,
     color: "white",
@@ -183,8 +200,9 @@ const styles = {
   },
 
   title: {
-    fontSize: 18,
-    marginBottom: 10,
+    color: "white",
+    fontSize: 40,
+    marginBottom: 25,
   },
 
   msg: {
@@ -194,7 +212,7 @@ const styles = {
     marginBottom: 10,
     fontSize: 12,
     textAlign: "center",
-    color: "#22c55e",
+    color: "#3690f0",
   },
 
   form: {
@@ -298,4 +316,5 @@ const styles = {
     cursor: "pointer",
     fontSize: 12,
   },
+
 };

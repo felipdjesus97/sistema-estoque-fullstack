@@ -26,7 +26,8 @@ body {
 }
 
 .card h1 {
-  margin-bottom: 30px;
+  margin-bottom: 45px;
+     color: white;
 }
 
 .card input {

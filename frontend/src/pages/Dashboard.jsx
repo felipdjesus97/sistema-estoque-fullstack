@@ -115,11 +115,11 @@ function Dashboard() {
       </div>
 
       <div style={styles.buttons}>
-        <button style={styles.btn} onClick={() => navigate("/produtos")}>
+        <button data-cy="btn-produtos"style={styles.btn} onClick={() => navigate("/produtos")}>
           Produtos
         </button>
 
-        <button style={styles.btnDanger} onClick={logout}>
+        <button data-cy="btn-sair" style={styles.btnDanger} onClick={logout}>
           Sair
         </button>
       </div>
@@ -139,8 +139,9 @@ const styles = {
   },
 
   title: {
-    fontSize: 16,
-    marginBottom: 15
+    color: "white",
+    fontSize: 40,
+    marginBottom: 25,
   },
 
   cards: {

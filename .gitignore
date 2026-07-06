@@ -13,5 +13,9 @@ yarn-error.log*
 build/
 dist/
 
+# Cypress
+cypress/
+cypress.config.js
+
 # Sistema
 .DS_Store
